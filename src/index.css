@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Definimos colores personalizados que usan nuestras variables */
+  --color-bg-primary: var(--bg-primary);
+  --color-text-primary: var(--text-primary);
+  --color-accent: var(--accent);
+}
+
+/* Valores para Modo CLARO (por defecto) */
+:root {
+  --bg-primary: #ffffff;      /* Blanco */
+  --text-primary: #111827;    /* Gris muy oscuro (casi negro) */
+  --accent: #3b82f6;          /* Azul */
+}
+
+/* Valores para Modo OSCURO */
+.dark {
+  --bg-primary: #0f172a;    /* Azul muy oscuro */
+  --text-primary: #f3f4f6;  /* Gris muy claro (casi blanco) */
+  --accent: #60a5fa;        /* Azul más claro y brillante */
+}
