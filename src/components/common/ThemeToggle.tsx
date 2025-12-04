@@ -32,7 +32,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
     // Invert colors: use OPPOSITE theme colors so particles are visible after theme change
     const colors = theme === 'light'
       ? ['#F4320B', '#FF5722', '#E64A19', '#D84315'] // Red-orange for switching TO dark
-      : ['#221F20', '#424242', '#616161', '#757575']; // Gray for switching TO light
+      : ['#F2EDEB', '#F2EDEB', '#F2EDEB', '#F2EDEB']; // Light beige for switching TO light
     
     return {
       start: getXY(d[0], particleCount - i, particleCount),
@@ -88,7 +88,14 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
   };
 
   const handleClick = () => {
-    toggleTheme();
+    // Calculate when particles will be near completion
+    // Particles last ~1200ms (animationTime * 2), change theme at 85% = ~1000ms
+    const themeChangeDelay = (animationTime * 2) * 0.85;
+    
+    // Change theme near the end of particle animation
+    setTimeout(() => {
+      toggleTheme();
+    }, themeChangeDelay);
     
     if (filterRef.current) {
       // Clear existing particles
@@ -100,7 +107,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
     }
   };
 
-  const lightbulbColor = theme === 'dark' ? '#F4320B' : '#221F20';
+  const textButtonColor = theme === 'dark' ? '#F4320B' : '#221F20';
 
   return (
     <>
@@ -210,7 +217,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
         >
           <span
             className='flex flex-col font-sans font-light text-xs'
-            style={{ color: lightbulbColor }}
+            style={{ color: textButtonColor }}
           >
             <p>Upside</p>
             <p>Down</p>

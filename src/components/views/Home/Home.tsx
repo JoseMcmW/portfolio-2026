@@ -4,10 +4,10 @@ function Home() {
   return (
   <>
     <div className="min-h-screen bg-bg-primary transition-colors">
-      <h1 className="text-text-primary text-2xl font-bold fixed top-6 left-12">
+      <h1 className="text-text-primary text-2xl font-bold fixed top-10 left-12">
         JMCM
       </h1>
-      <div className="fixed top-6 right-12">
+      <div className="fixed top-10 right-12">
         <ThemeToggle
           particleCount={15}
           particleDistances={[90, 10]}
