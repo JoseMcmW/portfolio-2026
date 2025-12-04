@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Home from "@/components/views/Home/Home"
-import SplashScreen from '@/components/common/SplashScreen'
+import SplashScreen from '@/components/ui/SplashScreen'
 
 function App() {
   const [showSplash, setShowSplash] = useState(true)
