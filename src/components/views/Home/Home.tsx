@@ -1,22 +1,23 @@
-import { useTheme } from '@/hooks/useTheme'
+import ThemeToggle from '@/components/common/ThemeToggle'
 
 function Home() {
-  const { toggleTheme } = useTheme();
   return (
-<>
-  <div className="min-h-screen bg-bg-primary transition-colors">
-    {/* El texto cambiará de color automáticamente según la variable */}
-    <h1 className="text-text-primary text-2xl font-bold fixed top-4 left-4">
-      JMCM
-    </h1>
-    <button
-      onClick={toggleTheme}
-      className="px-4 py-2 bg-accent text-white rounded fixed top-4 right-4"
-    >
-      Cambiar Tema
-    </button>
-  </div>
-</>
+  <>
+    <div className="min-h-screen bg-bg-primary transition-colors">
+      <h1 className="text-text-primary text-2xl font-bold fixed top-6 left-12">
+        JMCM
+      </h1>
+      <div className="fixed top-6 right-12">
+        <ThemeToggle
+          particleCount={15}
+          particleDistances={[90, 10]}
+          particleR={100}
+          animationTime={600}
+          timeVariance={300}
+        />
+      </div>
+    </div>
+  </>
   )
 }
 

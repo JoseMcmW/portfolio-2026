@@ -156,13 +156,13 @@
 /* Valores para Modo CLARO (por defecto) */
 :root {
   --bg-primary: #F2EDEB;
-  --text-primary: #E50A0A;
+  --text-primary: #221F20;
   --accent: #00C8FF;
 }
 
 /* Valores para Modo OSCURO */
 .dark {
-  --bg-primary: #010102;
-  --text-primary: #E50A0A;
+  --bg-primary: #221F20;
+  --text-primary: #F4320B;
   --accent: #00C8FF;
 }
