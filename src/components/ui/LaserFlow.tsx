@@ -275,7 +275,7 @@ export const LaserFlow: React.FC<Props> = ({
   decay = 1.1,
   falloffStart = 1.2,
   fogFallSpeed = 0.6,
-  color = '#F4320B'
+  color = '#FFFFFF'
 }) => {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -328,7 +328,6 @@ export const LaserFlow: React.FC<Props> = ({
     const canvas = renderer.domElement;
     canvas.style.width = '100%';
     canvas.style.height = '100%';
-    canvas.style.display = 'block';
     canvas.style.pointerEvents = 'none'; // ← No bloquea clicks
     mount.appendChild(canvas);
 
@@ -590,5 +589,5 @@ export const LaserFlow: React.FC<Props> = ({
     color
   ]);
 
-  return <div ref={mountRef} className={`w-full h-full absolute inset-0 pointer-events-none ${className || ''}`} style={style} />;
+  return <div ref={mountRef} className={`w-screen h-screen absolute inset-0 pointer-events-none ${className || ''}`} style={style} />;
 };
