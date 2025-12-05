@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import Home from "@/components/views/Home/Home"
+import { Home, About } from '@/views'
+import { Footer } from '@/components/Footer'
 import SplashScreen from '@/components/ui/SplashScreen'
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
     <>
       {showSplash && <SplashScreen onComplete={handleSplashComplete} duration={5000} />}
       <Home />
+      <About />
+      <Footer />
     </>
   )
 }

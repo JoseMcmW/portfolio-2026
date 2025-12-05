@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useTheme } from '@/hooks/useTheme';
+import { useThemeStore } from '@/store/themeStore';
 
 interface ThemeToggleProps {
   animationTime?: number;
@@ -9,14 +9,15 @@ interface ThemeToggleProps {
   timeVariance?: number;
 }
 
-const ThemeToggle: React.FC<ThemeToggleProps> = ({
+export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   animationTime = 600,
   particleCount = 15,
   particleDistances = [90, 10],
   particleR = 100,
   timeVariance = 300
 }) => {
-  const { theme, toggleTheme } = useTheme();
+  const theme = useThemeStore((state) => state.theme);
+  const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const filterRef = useRef<HTMLSpanElement>(null);
 
@@ -228,5 +229,3 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
     </>
   );
 };
-
-export default ThemeToggle;

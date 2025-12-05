@@ -5,7 +5,7 @@ interface SplashScreenProps {
   duration?: number;
 }
 
-const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, duration = 5000 }) => {
+export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, duration = 3000 }) => {
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
@@ -41,5 +41,3 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, duration = 5000
     </div>
   );
 };
-
-export default SplashScreen;
