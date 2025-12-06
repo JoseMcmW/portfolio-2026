@@ -1,12 +1,14 @@
 import { useThemeStore } from '@/store/themeStore'
-import { ThemeToggle } from '@/components/ui'
+import { ThemeToggle, RevealBackground } from '@/components/ui'
 
 export const Home = () => {
   const theme = useThemeStore((state) => state.theme)
   const logoColor = theme === 'dark' ? '#F4320B' : '#221F20'
-  
+
   return (
-    <section className="min-h-screen bg-transparent transition-colors flex items-center justify-center relative">
+    <section className="min-h-screen bg-transparent transition-colors flex items-center justify-center relative overflow-hidden">
+      {/* Reveal Background Effect */}
+      <RevealBackground />
       {/* Logo */}
       <span className="text-text-primary text-2xl font-bold fixed top-10 left-12 z-20">
         <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">

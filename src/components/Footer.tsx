@@ -1,10 +1,14 @@
 import { useThemeStore } from '@/store/themeStore'
+import { RevealBackground } from '@/components/ui'
 
 export const Footer = () => {
   const theme = useThemeStore((state) => state.theme)
-  
+
   return (
-    <footer className={`border-t border-text-primary/10 py-16 relative ${theme === 'dark' ? 'bg-transparent' : 'bg-bg-primary'}`}>
+    <footer className={`border-t border-text-primary/10 py-16 relative overflow-hidden ${theme === 'dark' ? 'bg-transparent' : 'bg-bg-primary'}`}>
+      {/* Reveal Background Effect */}
+      <RevealBackground />
+
       <div className="container mx-auto px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Column 1 */}
