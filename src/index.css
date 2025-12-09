@@ -159,6 +159,8 @@
   --bg-primary: #F2EDEB;
   --text-primary: #221F20;
   --text-secondary: rgba(34, 31, 32, 0.7); /* #221F20 con 70% opacidad */
+  --shadow-color: #000000;
+  --border-color: #000000;
   --accent: #00C8FF;
 }
 
@@ -168,4 +170,5 @@
   --text-primary: #F4320B;
   --text-secondary: rgba(244, 50, 11, 0.7); /* #F4320B con 70% opacidad */
   --accent: #00C8FF;
+  --shadow-color: #F4320B;
 }

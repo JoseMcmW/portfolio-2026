@@ -1,5 +1,5 @@
 import { useThemeStore } from '@/store/themeStore'
-import { ThemeToggle, RevealBackground } from '@/components/ui'
+import { ThemeToggle } from '@/components/ui'
 
 export const Home = () => {
   const theme = useThemeStore((state) => state.theme)
@@ -7,8 +7,6 @@ export const Home = () => {
 
   return (
     <section id="home" className="min-h-screen bg-transparent transition-colors flex items-center justify-center relative overflow-hidden">
-      {/* Reveal Background Effect */}
-      <RevealBackground />
       {/* Logo */}
       <div className="absolute top-10 left-[83px] -translate-x-1/2 z-20">
         <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
