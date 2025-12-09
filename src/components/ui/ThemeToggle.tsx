@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useThemeStore } from '@/store/themeStore';
+import gsap from 'gsap';
+import forestImage from '@/assets/forest_upsidedown.svg';
 
 interface ThemeToggleProps {
   animationTime?: number;
@@ -20,6 +22,16 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const filterRef = useRef<HTMLSpanElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  // Initialize rotation on mount based on current theme
+  useEffect(() => {
+    if (imageRef.current) {
+      gsap.set(imageRef.current, {
+        rotateX: theme === 'dark' ? 180 : 0
+      });
+    }
+  }, []);
 
   const noise = (n = 1) => n / 2 - Math.random() * n;
 
@@ -48,11 +60,12 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   const makeParticles = (element: HTMLElement) => {
     const d: [number, number] = particleDistances;
     const r = particleR;
-    const bubbleTime = animationTime * 2 + timeVariance;
+    const particleAnimationTime = 3000; // 3 segundos para sincronizar con el flip
+    const bubbleTime = particleAnimationTime + timeVariance;
     element.style.setProperty('--time', `${bubbleTime}ms`);
-    
+
     for (let i = 0; i < particleCount; i++) {
-      const t = animationTime * 2 + noise(timeVariance * 2);
+      const t = particleAnimationTime + noise(timeVariance * 2);
       const p = createParticle(i, t, d, r);
       
       setTimeout(() => {
@@ -89,26 +102,33 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   };
 
   const handleClick = () => {
-    // Calculate when particles will be near completion
-    // Particles last ~1200ms (animationTime * 2), change theme at 85% = ~1000ms
-    const themeChangeDelay = (animationTime * 2) * 0.85;
-    
-    // Change theme near the end of particle animation
-    setTimeout(() => {
-      toggleTheme();
-    }, themeChangeDelay);
-    
+    const totalAnimationDuration = 3000; // 3 segundos total
+
+    // Animate image flip with GSAP (3 seconds)
+    if (imageRef.current) {
+      const targetRotation = theme === 'dark' ? 0 : 180;
+      gsap.to(imageRef.current, {
+        rotateX: targetRotation,
+        duration: 3,
+        ease: 'power2.inOut'
+      });
+    }
+
+    // Create particles
     if (filterRef.current) {
       // Clear existing particles
       const particles = filterRef.current.querySelectorAll('.particle');
       particles.forEach(p => filterRef.current!.removeChild(p));
-      
+
       // Create new particles
       makeParticles(filterRef.current);
     }
-  };
 
-  const textButtonColor = theme === 'dark' ? '#F4320B' : '#221F20';
+    // Change theme after both animations complete (3 seconds)
+    setTimeout(() => {
+      toggleTheme();
+    }, totalAnimationDuration);
+  };
 
   return (
     <>
@@ -213,16 +233,43 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
         <button
           ref={buttonRef}
           onClick={handleClick}
-          className="rounded-full bg-bg-secondary hover:bg-bg-tertiary transition-all duration-300 relative z-10 group"
+          className="rounded-full transition-all duration-300 relative z-10 group p-2 cursor-pointer hover:scale-105"
           aria-label="Toggle theme"
+          style={{
+            background: 'transparent',
+            border: 'none'
+          }}
         >
-          <span
-            className='flex flex-col font-sans font-light text-xs'
-            style={{ color: textButtonColor }}
-          >
-            <p>Upside</p>
-            <p>Down</p>
-          </span>
+          <div className="relative w-16 h-16">
+            <img
+              ref={imageRef}
+              src={forestImage}
+              alt="Upside Down Forest"
+              className="w-full h-full transition-all duration-300"
+              style={{
+                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
+                transformStyle: 'preserve-3d'
+              }}
+            />
+            {/* Overlay de color para la mitad superior */}
+            <div
+              className="absolute top-0 left-0 w-full h-1/2 pointer-events-none transition-colors duration-300"
+              style={{
+                backgroundColor: theme === 'dark' ? '#F4320B' : '#221F20',
+                opacity: 0.3,
+                mixBlendMode: 'multiply'
+              }}
+            />
+            {/* Overlay de color para la mitad inferior */}
+            <div
+              className="absolute bottom-0 left-0 w-full h-1/2 pointer-events-none transition-colors duration-300"
+              style={{
+                backgroundColor: theme === 'dark' ? '#F2EDEB' : '#F4320B',
+                opacity: 0.3,
+                mixBlendMode: 'multiply'
+              }}
+            />
+          </div>
         </button>
         <span className="theme-toggle-effect" ref={filterRef} />
       </div>
