@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Home, About } from '@/views'
 import { Footer } from '@/components/Footer'
-import { SplashScreen, NavigationMenu } from '@/components/ui'
+import { SplashScreen, NavigationMenu, CustomCursor } from '@/components/ui'
 
 function App() {
   const [showSplash, setShowSplash] = useState(true)
@@ -19,6 +19,9 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-bg-primary">
+      {/* Custom Cursor */}
+      <CustomCursor />
+
       {/* SplashScreen */}
       {showSplash && <SplashScreen onComplete={handleSplashComplete} duration={3000} />}
 

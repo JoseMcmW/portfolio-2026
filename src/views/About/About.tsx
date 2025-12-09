@@ -1,10 +1,6 @@
-import { RevealBackground } from '@/components/ui'
-
 export const About = () => {
   return (
     <section id="about" className="min-h-screen bg-transparent transition-colors flex justify-center relative overflow-hidden">
-      {/* Reveal Background Effect */}
-      <RevealBackground />
 
       <div className="text-center px-12 relative z-10">
         <h2 className="text-text-primary text-4xl font-bold mb-4">About</h2>
