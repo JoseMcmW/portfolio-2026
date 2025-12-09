@@ -6,11 +6,11 @@ export const Home = () => {
   const logoColor = theme === 'dark' ? '#F4320B' : '#221F20'
 
   return (
-    <section className="min-h-screen bg-transparent transition-colors flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen bg-transparent transition-colors flex items-center justify-center relative overflow-hidden">
       {/* Reveal Background Effect */}
       <RevealBackground />
       {/* Logo */}
-      <div className="fixed top-10 left-[83px] -translate-x-1/2 z-20">
+      <div className="absolute top-10 left-[83px] -translate-x-1/2 z-20">
         <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M22 15 L34 15 L34 68 Q34 82 50 82 Q66 82 66 68 L66 45 Q66 32 53 32 L53 44 Q54 44 54 45 L54 68 Q54 70 50 70 Q46 70 46 68 L46 15 L22 15 Z" fill={logoColor}/>
           <circle cx="60" cy="20" r="6" fill={logoColor}/>
@@ -18,7 +18,7 @@ export const Home = () => {
       </div>
 
       {/* Vertical Line with Social Links */}
-      <div className="fixed left-[83px] -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
+      <div className="absolute left-[83px] -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
         {/* Top Point */}
         <div className="w-1 h-1 rounded-full bg-text-primary/70"></div>
 
@@ -29,7 +29,7 @@ export const Home = () => {
         <div className="flex flex-col gap-6 my-6">
           {/* LinkedIn */}
           <a
-            href="https://linkedin.com/in/tu-perfil"
+            href="https://www.linkedin.com/in/josemcentenoc/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
@@ -41,7 +41,7 @@ export const Home = () => {
 
           {/* WhatsApp */}
           <a
-            href="https://wa.me/tu-numero"
+            href="https://wa.me/+5491137857337"
             target="_blank"
             rel="noopener noreferrer"
             className="text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
@@ -53,7 +53,7 @@ export const Home = () => {
 
           {/* GitHub */}
           <a
-            href="https://github.com/tu-usuario"
+            href="https://github.com/JoseMcmW"
             target="_blank"
             rel="noopener noreferrer"
             className="text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
@@ -72,7 +72,7 @@ export const Home = () => {
       </div>
 
       {/* Theme Toggle */}
-      <div className="fixed top-10 right-12 z-20">
+      <div className="absolute top-10 right-12 z-20">
         <ThemeToggle
           particleCount={15}
           particleDistances={[90, 10]}
