@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Home, About } from '@/views'
-import { Footer } from '@/components/Footer'
+import { Home, About, Contact, Projects, Footer } from '@/views'
 import { SplashScreen, NavigationMenu, CustomCursor } from '@/components/ui'
 
 function App() {
@@ -32,6 +31,8 @@ function App() {
       <main className="relative z-10">
         <Home />
         <About />
+        <Projects />
+        <Contact />
         <Footer />
       </main>
     </div>

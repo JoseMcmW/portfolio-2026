@@ -1,1 +1,1 @@
-export * from './Footer'
+export * from '../views/Footer/Footer'
