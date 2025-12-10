@@ -81,9 +81,9 @@ export const About = () => {
               ease: 'back.out(2)',
               scrollTrigger: {
                 trigger: dot,
-                start: 'top 70%',
-                end: 'top 50%',
-                scrub: 1,
+                start: 'top 80%',
+                end: 'top 40%',
+                scrub: 2,
                 markers: false
               }
             }
@@ -179,7 +179,7 @@ export const About = () => {
               {/* Contenido (aparece gradualmente después del dot) */}
               <div
                 ref={addToContentRef}
-                className={`w-5/12 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'}`}
+                className={`w-6/12 ${index % 2 === 0 ? 'pr-16 text-right' : 'pl-16 text-left'}`}
               >
                 <h3 className="font-sans text-text-primary text-4xl font-bold mb-1">
                   {exp.title}
