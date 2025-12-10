@@ -172,3 +172,25 @@
   --accent: #00C8FF;
   --shadow-color: #F4320B;
 }
+
+/* Ocultar la barra de scroll */
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE y Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+}
+
+/* Asegurar que funcione en todos los elementos */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

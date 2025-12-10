@@ -61,7 +61,7 @@ export const About = () => {
           ease: 'none',
           scrollTrigger: {
             trigger: timelineRef.current,
-            start: 'top 80%',
+            start: 'top 50%',
             end: 'bottom bottom', // Se va pintando hasta el final de todo el timeline
             scrub: 1,
             markers: false
@@ -81,9 +81,9 @@ export const About = () => {
               ease: 'back.out(2)',
               scrollTrigger: {
                 trigger: dot,
-                start: 'top 70%',
-                end: 'top 50%',
-                scrub: 1,
+                start: 'top 80%',
+                end: 'top 40%',
+                scrub: 2,
                 markers: false
               }
             }
@@ -141,7 +141,7 @@ export const About = () => {
         <h2 className="font-serif text-text-primary text-4xl font-bold mb-4">
           Frontend Developer with 3 years of experience building scalable web applications using React.js, TypeScript, and modular component architecture.
         </h2>
-        <p className="text-text-secondary text-lg">
+        <p className="text-text-secondary text-md">
           Self-motivated, results-driven, and committed to clean code and best practices.
         </p>
       </div>
@@ -179,7 +179,7 @@ export const About = () => {
               {/* Contenido (aparece gradualmente después del dot) */}
               <div
                 ref={addToContentRef}
-                className={`w-5/12 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-16 text-left'}`}
+                className={`w-6/12 ${index % 2 === 0 ? 'pr-16 text-right' : 'pl-16 text-left'}`}
               >
                 <h3 className="font-sans text-text-primary text-4xl font-bold mb-1">
                   {exp.title}
@@ -192,7 +192,7 @@ export const About = () => {
                 </p>
                 <ul className={`space-y-1 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
                   {exp.achievements.map((achievement, i) => (
-                    <li key={i} className="font-serif text-text-secondary text-base leading-relaxed text-xs">
+                    <li key={i} className="font-serif text-text-secondary leading-relaxed text-xs">
                       • {achievement}
                     </li>
                   ))}
