@@ -140,7 +140,7 @@ export const Contact = () => {
               className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors"
             />
             {state.errors?.name && (
-              <p className="text-red-500 text-sm mt-2">{state.errors.name}</p>
+              <p className="font-serif text-red-500 text-sm mt-2">{state.errors.name}</p>
             )}
           </div>
 
@@ -154,7 +154,7 @@ export const Contact = () => {
               className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors"
             />
             {state.errors?.email && (
-              <p className="text-red-500 text-sm mt-2">{state.errors.email}</p>
+              <p className="font-serif text-red-500 text-sm mt-2">{state.errors.email}</p>
             )}
           </div>
 
@@ -168,7 +168,7 @@ export const Contact = () => {
               className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors resize-none"
             />
             {state.errors?.message && (
-              <p className="text-red-500 text-sm mt-2">{state.errors.message}</p>
+              <p className="font-serif text-red-500 text-sm mt-2">{state.errors.message}</p>
             )}
           </div>
 
@@ -178,7 +178,7 @@ export const Contact = () => {
                 ? 'bg-accent/10 border border-accent'
                 : 'bg-red-500/10 border border-red-500'
             }`}>
-              <p className={`text-lg ${state.success ? 'text-accent' : 'text-red-500'}`}>
+              <p className={`text-lg ${state.success ? 'text-accent' : 'text-text-secondary'}`}>
                 {state.message}
               </p>
             </div>

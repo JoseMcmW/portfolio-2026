@@ -137,7 +137,7 @@ export const About = () => {
   return (
     <section id="about" className="min-h-screen bg-transparent transition-colors flex flex-col items-center relative overflow-hidden py-20">
       {/* Header */}
-      <div className="w-3/4 text-center px-12 relative z-10 mb-20">
+      <div className="w-screen md:w-3/4 text-center px-12 relative z-10 mb-20">
         <h2 className="font-serif text-text-primary text-4xl font-bold mb-4">
           Frontend Developer with 3 years of experience building scalable web applications using React.js, TypeScript, and modular component architecture.
         </h2>
