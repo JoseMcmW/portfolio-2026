@@ -63,18 +63,42 @@ async function submitAction(
     };
   }
 
-  // Aquí puedes agregar la lógica para enviar el formulario
-  // Por ejemplo, una llamada a una API
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  try {
+    // Call the serverless API endpoint
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-  console.log("Form data:", data);
+    const responseData = await response.json();
 
-  return {
-    errors: {},
-    success: true,
-    message: "Message sent successfully!",
-    data: { name: "", email: "", message: "" },
-  };
+    if (!response.ok || !responseData.success) {
+      return {
+        errors: {},
+        success: false,
+        message: responseData.error || "Failed to send message. Please try again.",
+        data,
+      };
+    }
+
+    return {
+      errors: {},
+      success: true,
+      message: "Message sent successfully! I'll get back to you soon.",
+      data: { name: "", email: "", message: "" },
+    };
+  } catch (error) {
+    console.error("Error sending message:", error);
+    return {
+      errors: {},
+      success: false,
+      message: "Network error. Please check your connection and try again.",
+      data,
+    };
+  }
 }
 
 export const Contact = () => {
@@ -148,9 +172,15 @@ export const Contact = () => {
             )}
           </div>
 
-          {state.success && state.message && (
-            <div className="text-center p-4 bg-accent/10 border border-accent">
-              <p className="text-accent text-lg">{state.message}</p>
+          {state.message && (
+            <div className={`text-center p-4 ${
+              state.success
+                ? 'bg-accent/10 border border-accent'
+                : 'bg-red-500/10 border border-red-500'
+            }`}>
+              <p className={`text-lg ${state.success ? 'text-accent' : 'text-red-500'}`}>
+                {state.message}
+              </p>
             </div>
           )}
 
