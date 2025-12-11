@@ -1,14 +1,161 @@
-export const Contact = () => {
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
+import { z } from "zod";
+import { useThemeStore } from "@/store/themeStore";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
+  email: z.string().email({ message: "Email inválido" }),
+  message: z.string().min(10, "El mensaje debe tener al menos 10 caracteres"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+type FormErrors = Partial<Record<keyof ContactFormData, string>>;
+
+interface FormState {
+  errors?: FormErrors;
+  success?: boolean;
+  message?: string;
+  data?: {
+    name: string;
+    email: string;
+    message: string;
+  };
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
   return (
-    <div id="contact" className="container mx-auto px-12 py-16 relative z-10 border-t border-text-primary/10">
-      <h2 className="text-text-primary text-4xl font-bold mb-8 text-center">Contact</h2>
-      <div className="max-w-2xl mx-auto text-center">
-        <p className="text-text-secondary text-lg mb-4">
-          Get in touch with me
-        </p>
-        <p className="text-text-secondary text-sm">
-          Email: contact@jmcm.com
-        </p>
+    <button
+      type="submit"
+      disabled={pending}
+      className="w-full py-4 text-xl font-medium text-bg-primary bg-text-primary hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      {pending ? "Sending..." : "Send"}
+    </button>
+  );
+}
+
+async function submitAction(
+  _prevState: FormState,
+  formData: FormData
+): Promise<FormState> {
+  const data = {
+    name: formData.get("name") as string,
+    email: formData.get("email") as string,
+    message: formData.get("message") as string,
+  };
+
+  const result = contactSchema.safeParse(data);
+
+  if (!result.success) {
+    const fieldErrors: FormErrors = {};
+    result.error.issues.forEach((issue) => {
+      if (issue.path[0]) {
+        fieldErrors[issue.path[0] as keyof ContactFormData] = issue.message;
+      }
+    });
+    return {
+      errors: fieldErrors,
+      success: false,
+      data,
+    };
+  }
+
+  // Aquí puedes agregar la lógica para enviar el formulario
+  // Por ejemplo, una llamada a una API
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  console.log("Form data:", data);
+
+  return {
+    errors: {},
+    success: true,
+    message: "Message sent successfully!",
+    data: { name: "", email: "", message: "" },
+  };
+}
+
+export const Contact = () => {
+  const [state, formAction] = useActionState<FormState, FormData>(
+    submitAction,
+    {
+      errors: {},
+      success: false,
+      data: { name: "", email: "", message: "" }
+    }
+  );
+
+  const theme = useThemeStore((state) => state.theme);
+  const logoColor = theme === 'dark' ? '#F4320B' : '#221F20';
+
+  return (
+    <div id="contact" className="container mx-auto px-6 py-16">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-16">
+          <div className="flex justify-center">
+            <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 15 L34 15 L34 68 Q34 82 50 82 Q66 82 66 68 L66 45 Q66 32 53 32 L53 44 Q54 44 54 45 L54 68 Q54 70 50 70 Q46 70 46 68 L46 15 L22 15 Z" fill={logoColor}/>
+              <circle cx="60" cy="20" r="6" fill={logoColor}/>
+            </svg>
+          </div>
+          <p className="text-text-secondary text-lg mb-4">
+            Get in touch with me
+          </p>
+        </div>
+
+        <form action={formAction} className="space-y-12" noValidate>
+          <div className="space-y-2">
+            <input
+              type="text"
+              name="name"
+              key={`name-${state.success}`}
+              defaultValue={state.data?.name || ""}
+              placeholder="Your name"
+              className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors"
+            />
+            {state.errors?.name && (
+              <p className="text-red-500 text-sm mt-2">{state.errors.name}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <input
+              type="email"
+              name="email"
+              key={`email-${state.success}`}
+              defaultValue={state.data?.email || ""}
+              placeholder="your@email.com"
+              className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors"
+            />
+            {state.errors?.email && (
+              <p className="text-red-500 text-sm mt-2">{state.errors.email}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <textarea
+              name="message"
+              key={`message-${state.success}`}
+              defaultValue={state.data?.message || ""}
+              placeholder="Let me know how can I help you..."
+              rows={4}
+              className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors resize-none"
+            />
+            {state.errors?.message && (
+              <p className="text-red-500 text-sm mt-2">{state.errors.message}</p>
+            )}
+          </div>
+
+          {state.success && state.message && (
+            <div className="text-center p-4 bg-accent/10 border border-accent">
+              <p className="text-accent text-lg">{state.message}</p>
+            </div>
+          )}
+
+          <SubmitButton />
+        </form>
       </div>
     </div>
   );
