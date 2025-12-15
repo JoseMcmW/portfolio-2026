@@ -115,21 +115,21 @@ export const Contact = () => {
   const logoColor = theme === 'dark' ? '#F4320B' : '#221F20';
 
   return (
-    <div id="contact" className="min-h-screen container mx-auto px-6 py-16 flex items-center justify-center">
+    <div id="contact" className="min-h-screen container mx-auto px-6 py-8 md:py-16 flex items-center justify-center">
       <div className="max-w-3xl w-full">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <div className="flex justify-center">
             <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M22 15 L34 15 L34 68 Q34 82 50 82 Q66 82 66 68 L66 45 Q66 32 53 32 L53 44 Q54 44 54 45 L54 68 Q54 70 50 70 Q46 70 46 68 L46 15 L22 15 Z" fill={logoColor}/>
               <circle cx="60" cy="20" r="6" fill={logoColor}/>
             </svg>
           </div>
-          <p className="text-text-secondary text-lg mb-4">
+          <p className="text-text-secondary text-sm md:text-lg mb-4">
             Get in touch with me
           </p>
         </div>
 
-        <form action={formAction} className="space-y-12" noValidate>
+        <form action={formAction} className="space-y-6 md:space-y-12" noValidate>
           <div className="space-y-2">
             <input
               type="text"
@@ -137,10 +137,10 @@ export const Contact = () => {
               key={`name-${state.success}`}
               defaultValue={state.data?.name || ""}
               placeholder="Your name"
-              className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors"
+              className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-sm md:text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors"
             />
             {state.errors?.name && (
-              <p className="font-serif text-red-500 text-sm mt-2">{state.errors.name}</p>
+              <p className="font-serif text-red-500 text-xs mt-1">{state.errors.name}</p>
             )}
           </div>
 
@@ -151,10 +151,10 @@ export const Contact = () => {
               key={`email-${state.success}`}
               defaultValue={state.data?.email || ""}
               placeholder="your@email.com"
-              className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors"
+              className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-sm md:text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors"
             />
             {state.errors?.email && (
-              <p className="font-serif text-red-500 text-sm mt-2">{state.errors.email}</p>
+              <p className="font-serif text-red-500 text-xs mt-1">{state.errors.email}</p>
             )}
           </div>
 
@@ -165,10 +165,10 @@ export const Contact = () => {
               defaultValue={state.data?.message || ""}
               placeholder="Let me know how can I help you..."
               rows={4}
-              className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors resize-none"
+              className="w-full bg-transparent border-0 border-b-2 border-text-secondary/30 focus:border-text-primary text-text-primary text-sm md:text-2xl py-4 px-0 placeholder:text-text-secondary/50 focus:outline-none transition-colors resize-none"
             />
             {state.errors?.message && (
-              <p className="font-serif text-red-500 text-sm mt-2">{state.errors.message}</p>
+              <p className="font-serif text-red-500 text-xs mt-1">{state.errors.message}</p>
             )}
           </div>
 
@@ -178,7 +178,7 @@ export const Contact = () => {
                 ? 'bg-accent/10 border border-accent'
                 : 'bg-red-500/10 border border-red-500'
             }`}>
-              <p className={`text-lg ${state.success ? 'text-accent' : 'text-text-secondary'}`}>
+              <p className={`text-sm md:text-lg ${state.success ? 'text-accent' : 'text-text-secondary'}`}>
                 {state.message}
               </p>
             </div>

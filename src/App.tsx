@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Home, About, Contact, Projects, Footer } from '@/views'
-import { SplashScreen, NavigationMenu, CustomCursor } from '@/components/ui'
+import { SplashScreen, CustomCursor } from '@/components/ui'
 
 function App() {
   const [showSplash, setShowSplash] = useState(true)
@@ -51,13 +51,6 @@ function App() {
     }
   }, [])
 
-  const handleNavigation = (section: string) => {
-    const element = document.getElementById(section)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
   return (
     <div className="min-h-screen bg-bg-primary md:p-3">
       {/* Custom Cursor */}
@@ -65,9 +58,6 @@ function App() {
 
       {/* SplashScreen */}
       {showSplash && <SplashScreen onComplete={handleSplashComplete} duration={3000} />}
-
-      {/* Navigation Menu */}
-      {!showSplash && <NavigationMenu onNavigate={handleNavigation} />}
 
       {/* Contenido principal */}
         <Home />
