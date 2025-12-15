@@ -70,7 +70,7 @@ export const Home = () => {
               <a
                 href="/Jose_Centeno_CV_ES.pdf"
                 download="Jose_Centeno_CV_ES.pdf"
-                className="text-[10px] px-1.5 py-0.5 rounded border border-text-secondary text-text-secondary hover:bg-text-primary hover:text-background transition-all duration-300"
+                className="text-[10px] px-1.5 py-0.5 rounded border border-text-secondary text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
                 title="Descargar CV en Español"
               >
                 ES
@@ -78,7 +78,7 @@ export const Home = () => {
               <a
                 href="/Jose_Centeno_CV_EN.pdf"
                 download="Jose_Centeno_CV_EN.pdf"
-                className="text-[10px] px-1.5 py-0.5 rounded border border-text-secondary text-text-secondary hover:bg-text-primary hover:text-background transition-all duration-300"
+                className="text-[10px] px-1.5 py-0.5 rounded border border-text-secondary text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
                 title="Descargar CV en Inglés"
               >
                 EN

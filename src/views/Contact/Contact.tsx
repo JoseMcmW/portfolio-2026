@@ -115,8 +115,8 @@ export const Contact = () => {
   const logoColor = theme === 'dark' ? '#F4320B' : '#221F20';
 
   return (
-    <div id="contact" className="container mx-auto px-6 py-16">
-      <div className="max-w-3xl mx-auto">
+    <div id="contact" className="min-h-screen container mx-auto px-6 py-16 flex items-center justify-center">
+      <div className="max-w-3xl w-full">
         <div className="text-center mb-16">
           <div className="flex justify-center">
             <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">

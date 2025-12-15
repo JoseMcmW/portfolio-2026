@@ -60,7 +60,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   const makeParticles = (element: HTMLElement) => {
     const d: [number, number] = particleDistances;
     const r = particleR;
-    const particleAnimationTime = 3000; // 3 segundos para sincronizar con el flip
+    const particleAnimationTime = 1000; // 3 segundos para sincronizar con el flip
     const bubbleTime = particleAnimationTime + timeVariance;
     element.style.setProperty('--time', `${bubbleTime}ms`);
 
@@ -102,14 +102,14 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   };
 
   const handleClick = () => {
-    const totalAnimationDuration = 3000; // 3 segundos total
+    const totalAnimationDuration = 1000; // 3 segundos total
 
     // Animate image flip with GSAP (3 seconds)
     if (imageRef.current) {
       const targetRotation = theme === 'dark' ? 0 : 180;
       gsap.to(imageRef.current, {
         rotateX: targetRotation,
-        duration: 3,
+        duration: 1,
         ease: 'power2.inOut'
       });
     }

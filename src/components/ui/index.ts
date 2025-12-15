@@ -5,3 +5,5 @@ export { default as GlassIcons } from './GlassIcons';
 export { default as NavigationMenu } from './NavigationMenu';
 export type { GlassIconsItem, GlassIconsProps } from './GlassIcons';
 export type { NavigationMenuProps } from './NavigationMenu';
+export * from './ScrollVelocity';
+export * from './LogoLoop';
