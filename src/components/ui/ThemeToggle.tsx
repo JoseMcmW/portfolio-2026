@@ -1,27 +1,11 @@
 import React, { useRef, useEffect } from 'react';
-import { useThemeStore } from '@/store/themeStore';
 import gsap from 'gsap';
+import { useThemeStore } from '@/store/themeStore';
 import forestImage from '@/assets/forest_upsidedown.svg';
 
-interface ThemeToggleProps {
-  animationTime?: number;
-  particleCount?: number;
-  particleDistances?: [number, number];
-  particleR?: number;
-  timeVariance?: number;
-}
-
-export const ThemeToggle: React.FC<ThemeToggleProps> = ({
-  animationTime = 600,
-  particleCount = 15,
-  particleDistances = [90, 10],
-  particleR = 100,
-  timeVariance = 300
-}) => {
+export const ThemeToggle: React.FC = () => {
   const theme = useThemeStore((state) => state.theme);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const filterRef = useRef<HTMLSpanElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
   // Initialize rotation on mount based on current theme
@@ -33,78 +17,10 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
     }
   }, []);
 
-  const noise = (n = 1) => n / 2 - Math.random() * n;
-
-  const getXY = (distance: number, pointIndex: number, totalPoints: number): [number, number] => {
-    const angle = ((360 + noise(8)) / totalPoints) * pointIndex * (Math.PI / 180);
-    return [distance * Math.cos(angle), distance * Math.sin(angle)];
-  };
-
-  const createParticle = (i: number, t: number, d: [number, number], r: number) => {
-    const rotate = noise(r / 10);
-    // Invert colors: use OPPOSITE theme colors so particles are visible after theme change
-    const colors = theme === 'light'
-      ? ['#F4320B', '#FF5722', '#E64A19', '#D84315'] // Red-orange for switching TO dark
-      : ['#F2EDEB', '#F2EDEB', '#F2EDEB', '#F2EDEB']; // Light beige for switching TO light
-    
-    return {
-      start: getXY(d[0], particleCount - i, particleCount),
-      end: getXY(d[1] + noise(7), particleCount - i, particleCount),
-      time: t,
-      scale: 1 + noise(0.2),
-      color: colors[Math.floor(Math.random() * colors.length)],
-      rotate: rotate > 0 ? (rotate + r / 20) * 10 : (rotate - r / 20) * 10
-    };
-  };
-
-  const makeParticles = (element: HTMLElement) => {
-    const d: [number, number] = particleDistances;
-    const r = particleR;
-    const particleAnimationTime = 1000; // 3 segundos para sincronizar con el flip
-    const bubbleTime = particleAnimationTime + timeVariance;
-    element.style.setProperty('--time', `${bubbleTime}ms`);
-
-    for (let i = 0; i < particleCount; i++) {
-      const t = particleAnimationTime + noise(timeVariance * 2);
-      const p = createParticle(i, t, d, r);
-      
-      setTimeout(() => {
-        const particle = document.createElement('span');
-        const point = document.createElement('span');
-        
-        particle.classList.add('particle');
-        particle.style.setProperty('--start-x', `${p.start[0]}px`);
-        particle.style.setProperty('--start-y', `${p.start[1]}px`);
-        particle.style.setProperty('--end-x', `${p.end[0]}px`);
-        particle.style.setProperty('--end-y', `${p.end[1]}px`);
-        particle.style.setProperty('--time', `${p.time}ms`);
-        particle.style.setProperty('--scale', `${p.scale}`);
-        particle.style.setProperty('--color', p.color);
-        particle.style.setProperty('--rotate', `${p.rotate}deg`);
-        
-        point.classList.add('point');
-        particle.appendChild(point);
-        element.appendChild(particle);
-        
-        requestAnimationFrame(() => {
-          element.classList.add('active');
-        });
-        
-        setTimeout(() => {
-          try {
-            element.removeChild(particle);
-          } catch {
-            // Intentionally suppress errors if particle was already removed
-          }
-        }, t);
-      }, 30);
-    }
-  };
-
   const handleClick = () => {
-    const totalAnimationDuration = 1000; // 3 segundos total
+    const totalAnimationDuration = 1000;
 
-    // Animate image flip with GSAP (3 seconds)
+    // Animate image flip with GSAP
     if (imageRef.current) {
       const targetRotation = theme === 'dark' ? 0 : 180;
       gsap.to(imageRef.current, {
@@ -114,165 +30,59 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
       });
     }
 
-    // Create particles
-    if (filterRef.current) {
-      // Clear existing particles
-      const particles = filterRef.current.querySelectorAll('.particle');
-      particles.forEach(p => filterRef.current!.removeChild(p));
-
-      // Create new particles
-      makeParticles(filterRef.current);
-    }
-
-    // Change theme after both animations complete (3 seconds)
+    // Change theme after animation completes
     setTimeout(() => {
       toggleTheme();
     }, totalAnimationDuration);
   };
 
+  const shadow =
+  theme === 'dark'
+    ? 'drop-shadow(0 8px 16px rgba(244, 50, 11, 0.45))'
+    : 'drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25))';
+
   return (
-    <>
-      <style>
-        {`
-          .theme-toggle-container {
-            position: relative;
-            display: inline-block;
-          }
-          
-          .theme-toggle-effect {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            filter: blur(7px) contrast(100) blur(0);
-            mix-blend-mode: lighten;
-            z-index: 1;
-          }
-          
-          .theme-toggle-effect::before {
-            content: "";
-            position: absolute;
-            inset: -75px;
-            z-index: -2;
-            background: transparent;
-          }
-          
-          .particle,
-          .point {
-            display: block;
-            opacity: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 9999px;
-            transform-origin: center;
-          }
-          
-          .particle {
-            --time: 5s;
-            position: absolute;
-            top: calc(50% - 10px);
-            left: calc(50% - 10px);
-            animation: particle calc(var(--time)) ease 1 -350ms;
-          }
-          
-          .point {
-            background: var(--color);
-            opacity: 1;
-            animation: point calc(var(--time)) ease 1 -350ms;
-          }
-          
-          @keyframes particle {
-            0% {
-              transform: rotate(0deg) translate(calc(var(--start-x)), calc(var(--start-y)));
-              opacity: 1;
-              animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
-            }
-            70% {
-              transform: rotate(calc(var(--rotate) * 0.5)) translate(calc(var(--end-x) * 1.2), calc(var(--end-y) * 1.2));
-              opacity: 1;
-              animation-timing-function: ease;
-            }
-            85% {
-              transform: rotate(calc(var(--rotate) * 0.66)) translate(calc(var(--end-x)), calc(var(--end-y)));
-              opacity: 1;
-            }
-            100% {
-              transform: rotate(calc(var(--rotate) * 1.2)) translate(calc(var(--end-x) * 0.5), calc(var(--end-y) * 0.5));
-              opacity: 1;
-            }
-          }
-          
-          @keyframes point {
-            0% {
-              transform: scale(0);
-              opacity: 0;
-              animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
-            }
-            25% {
-              transform: scale(calc(var(--scale) * 0.25));
-            }
-            38% {
-              opacity: 1;
-            }
-            65% {
-              transform: scale(var(--scale));
-              opacity: 1;
-              animation-timing-function: ease;
-            }
-            85% {
-              transform: scale(var(--scale));
-              opacity: 1;
-            }
-            100% {
-              transform: scale(0);
-              opacity: 0;
-            }
-          }
-        `}
-      </style>
-      <div className="theme-toggle-container">
-        <button
-          ref={buttonRef}
-          onClick={handleClick}
-          className="rounded-full transition-all duration-300 relative z-10 group p-2 cursor-pointer hover:scale-105"
-          aria-label="Toggle theme"
-          style={{
-            background: 'transparent',
-            border: 'none'
-          }}
-        >
-          <div className="relative w-16 h-16">
-            <img
-              ref={imageRef}
-              src={forestImage}
-              alt="Upside Down Forest"
-              className="w-full h-full transition-all duration-300"
-              style={{
-                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
-                transformStyle: 'preserve-3d'
-              }}
-            />
-            {/* Overlay de color para la mitad superior */}
-            <div
-              className="absolute top-0 left-0 w-full h-1/2 pointer-events-none transition-colors duration-300"
-              style={{
-                backgroundColor: theme === 'dark' ? '#F4320B' : '#221F20',
-                opacity: 0.3,
-                mixBlendMode: 'multiply'
-              }}
-            />
-            {/* Overlay de color para la mitad inferior */}
-            <div
-              className="absolute bottom-0 left-0 w-full h-1/2 pointer-events-none transition-colors duration-300"
-              style={{
-                backgroundColor: theme === 'dark' ? '#F2EDEB' : '#F4320B',
-                opacity: 0.3,
-                mixBlendMode: 'multiply'
-              }}
-            />
-          </div>
-        </button>
-        <span className="theme-toggle-effect" ref={filterRef} />
-      </div>
-    </>
+    <div className="relative inline-block">
+      <button
+        onClick={handleClick}
+        className="rounded-full transition-all duration-300 relative group p-2 cursor-pointer hover:scale-105"
+        aria-label="Toggle theme"
+        style={{
+          background: 'transparent',
+          border: 'none'
+        }}
+      >
+        <div className="relative w-16 h-16">
+          <img
+            ref={imageRef}
+            src={forestImage}
+            alt="Upside Down Forest"
+            className="w-full h-full transition-all duration-300"
+            style={{
+              filter: shadow,
+              transformStyle: 'preserve-3d'
+            }}
+          />
+          {/* Overlay de color para la mitad superior */}
+          <div
+            className="absolute top-0 left-0 w-full h-1/2 pointer-events-none transition-colors duration-300"
+            style={{
+              backgroundColor: theme === 'dark' ? '#F4320B' : '#221F20',
+              opacity: 0.3,
+              mixBlendMode: 'multiply',
+            }}
+          />
+          {/* Overlay de color para la mitad inferior */}
+          <div
+            className="absolute bottom-0 left-0 w-full h-1/2 pointer-events-none transition-colors duration-300"
+            style={{
+              backgroundColor: theme === 'dark' ? '#F2EDEB' : '#F4320B',
+              opacity: 0.3,
+              mixBlendMode: 'multiply'
+            }}
+          />
+        </div>
+      </button>
+    </div>
   );
 };

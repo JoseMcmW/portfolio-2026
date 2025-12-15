@@ -59,7 +59,7 @@ function App() {
   }
 
   return (
-    <div className="relative min-h-screen bg-bg-primary">
+    <div className="min-h-screen bg-bg-primary md:p-3">
       {/* Custom Cursor */}
       <CustomCursor />
 
@@ -70,13 +70,11 @@ function App() {
       {!showSplash && <NavigationMenu onNavigate={handleNavigation} />}
 
       {/* Contenido principal */}
-      <main className="relative z-10">
         <Home />
-        <About />
-        <Projects />
-        <Contact />
-        <Footer />
-      </main>
+        {/* <About /> */}
+        {/* <Projects /> */}
+        {/* <Contact /> */}
+        {/* <Footer /> */}
     </div>
   )
 }
