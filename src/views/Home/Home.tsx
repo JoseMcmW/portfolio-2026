@@ -6,7 +6,7 @@ export const Home = () => {
   const logoColor = theme === 'dark' ? '#F4320B' : '#221F20'
 
   return (
-    <section id="home" className="bg-transparent transition-colors">
+    <section id="home" className="min-h-screen bg-transparent transition-colors">
       {/* Logo and Theme Toggle */}
       <div className='flex justify-between'>
         <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
