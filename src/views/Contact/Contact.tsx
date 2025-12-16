@@ -125,7 +125,7 @@ export const Contact = () => {
             </svg>
           </div>
           <p className="text-text-secondary text-sm md:text-lg mb-4">
-            Get in touch with me
+            Got a vision? Ready to take your project to the next level? Let's build it.
           </p>
         </div>
 
