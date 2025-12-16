@@ -7,3 +7,5 @@ export type { GlassIconsItem, GlassIconsProps } from './GlassIcons';
 export type { NavigationMenuProps } from './NavigationMenu';
 export * from './ScrollVelocity';
 export * from './LogoLoop';
+export * from './TiltedCard';
+export * from './Modal';

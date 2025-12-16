@@ -40,7 +40,7 @@ function App() {
       options={{ duration: 1.2, smoothWheel: true, syncTouch: true }}
     >
       <ScrollSync />
-      <div className="min-h-screen bg-bg-primary md:p-3">
+      <div className="min-h-screen bg-bg-primary p-1 md:p-3">
         {/* Custom Cursor */}
         <CustomCursor />
 
@@ -50,7 +50,7 @@ function App() {
         {/* Contenido principal */}
         <Home />
         {/* <About /> */}
-        {/* <Projects /> */}
+        <Projects />
         <Contact />
         <Footer />
       </div>
