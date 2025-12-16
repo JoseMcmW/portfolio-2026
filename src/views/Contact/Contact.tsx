@@ -4,9 +4,9 @@ import { z } from "zod";
 import { useThemeStore } from "@/store/themeStore";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
-  email: z.email({ message: "Email inválido" }),
-  message: z.string().min(10, "El mensaje debe tener al menos 10 caracteres"),
+  name: z.string().min(2, "The name must be at least 2 characters long"),
+  email: z.email({ message: "Invalid email" }),
+  message: z.string().min(10, "The message must be at least 10 characters long"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -115,7 +115,7 @@ export const Contact = () => {
   const logoColor = theme === 'dark' ? '#F4320B' : '#221F20';
 
   return (
-    <div id="contact" className="min-h-screen container mx-auto px-6 py-8 md:py-16 flex items-center justify-center">
+    <div id="contact" className="min-h-screen container mx-auto px-4 py-8 md:py-16 flex items-center justify-center">
       <div className="max-w-3xl w-full">
         <div className="text-center mb-8">
           <div className="flex justify-center">

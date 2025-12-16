@@ -6,7 +6,7 @@ export const Home = () => {
   const logoColor = theme === 'dark' ? '#F4320B' : '#221F20'
 
   return (
-    <section id="home" className="min-h-screen bg-transparent transition-colors">
+    <section id="home" className="flex flex-col min-h-screen bg-transparent transition-colors">
       {/* Logo and Theme Toggle */}
       <div className='flex justify-between'>
         <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +15,7 @@ export const Home = () => {
         </svg>
         <ThemeToggle />
       </div>
-      <div className='flex flex-row items-center'>
+      <div className='flex-1 flex flex-row items-center'>
         {/* Vertical Line with Social Links */}
         <div className="flex flex-col items-center shrink-0 w-[70px]">
           {/* Top Point */}
