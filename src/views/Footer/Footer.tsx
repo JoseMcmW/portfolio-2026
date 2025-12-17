@@ -28,8 +28,8 @@ export const Footer = () => {
           ease: 'back.out(1.7)',
           scrollTrigger: {
             trigger: footer,
-            start: 'center bottom-=100px', // Start when the top of the footer is 100px from the bottom of the viewport
-            end: 'bottom center',
+            start: 'center bottom+=200px', // Start when the top of the footer is 100px from the bottom of the viewport
+            end: 'bottom bottom',
             toggleActions: 'play none none reverse',
             // markers: true, // Uncomment for debugging
           },
@@ -41,7 +41,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer ref={footerRef} className={'h-[30vh] relative bg-bg-primary overflow-hidden'}>
+    <footer ref={footerRef} className={'h-[30vh] xl:h-[70vh] relative bg-bg-primary overflow-hidden'}>
       {/* Footer content - Siempre visible y centrado */}
       <div className="relative flex flex-col items-center justify-center z-10 gap-2 py-2">
         <p className="font-sans text-text-primary text-xs md:text-sm font-medium">
@@ -89,7 +89,7 @@ export const Footer = () => {
         </div>
       </div>
       {/* Footer con letras JMCM de fondo */}
-      <div className='absolute inset-0 !my-0 flex justify-center items-center overflow-hidden z-0 pointer-events-none'>
+      <div className='absolute !my-0 flex justify-center items-center overflow-hidden z-0 pointer-events-none'>
         <h2 ref={textRef} className='!text-[35vw] font-black !leading-none text-text-primary/10 opacity-50 will-change-transform'>
           JMCM
         </h2>
