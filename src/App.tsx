@@ -3,7 +3,7 @@ import { ReactLenis, useLenis } from 'lenis/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Home, About, Contact, Projects, Footer } from '@/views'
-import { SplashScreen, CustomCursor } from '@/components/ui'
+import { SplashScreen, CustomCursor } from '@/shared/components/ui'
 
 gsap.registerPlugin(ScrollTrigger)
 
