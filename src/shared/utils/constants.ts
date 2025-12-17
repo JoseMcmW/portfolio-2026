@@ -29,13 +29,13 @@ export const socialLinks = [
 export const cvLinks = [
   {
     language: 'ES',
-    url: '/Jose_Centeno_CV_ES.pdf',
+    url: '/docs/Jose_Centeno_CV_ES.pdf',
     filename: 'Jose_Centeno_CV_ES.pdf',
     title: 'Descargar CV en Español'
   },
   {
     language: 'EN',
-    url: '/Jose_Centeno_CV_EN.pdf',
+    url: '/docs/Jose_Centeno_CV_EN.pdf',
     filename: 'Jose_Centeno_CV_EN.pdf',
     title: 'Descargar CV en Inglés'
   }
