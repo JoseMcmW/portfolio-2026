@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { ReactLenis, useLenis } from 'lenis/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Home, About, Contact, Projects, Footer } from '@/views'
+import { Toaster } from 'sonner'
+import { Home, Contact, Projects, Footer } from '@/views'
 import { SplashScreen, CustomCursor } from '@/shared/components/ui'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -40,6 +41,7 @@ function App() {
       options={{ duration: 1.2, smoothWheel: true, syncTouch: true }}
     >
       <ScrollSync />
+      <Toaster position="top-center" richColors />
       <div className="min-h-screen bg-bg-primary p-1 md:p-3">
         {/* Custom Cursor */}
         <CustomCursor />
@@ -49,7 +51,6 @@ function App() {
 
         {/* Contenido principal */}
         <Home />
-        {/* <About /> */}
         <Projects />
         <Contact />
         <Footer />

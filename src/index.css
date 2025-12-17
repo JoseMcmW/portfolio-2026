@@ -162,6 +162,22 @@
   --shadow-color: #000000;
   --border-color: #000000;
   --accent: #00C8FF;
+
+  /* Sonner - Light Mode */
+  --sonner-bg: hsl(30 20% 94%);
+  --sonner-text: hsl(0 0% 13%);
+  --sonner-border: hsl(0 0% 20%);
+  --sonner-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  /* Success Toast - Green */
+  --sonner-success-bg: hsl(142 50% 15%);
+  --sonner-success-text: hsl(142 60% 50%);
+  --sonner-success-border: hsl(142 60% 50%);
+
+  /* Error Toast - Red */
+  --sonner-error-bg: #221F20;
+  --sonner-error-text: hsl(0 70% 55%);
+  --sonner-error-border: hsl(0 70% 55%);
 }
 
 /* Valores para Modo OSCURO */
@@ -171,6 +187,42 @@
   --text-secondary: rgba(244, 50, 11, 0.7); /* #F4320B con 70% opacidad */
   --accent: #00C8FF;
   --shadow-color: #F4320B;
+
+  /* Sonner - Dark Mode */
+  --sonner-bg: hsl(0 4% 13%);
+  --sonner-text: hsl(9 100% 65%);
+  --sonner-border: hsl(0 4% 20%);
+  --sonner-shadow: 0 10px 30px rgba(244, 50, 11, 0.2);
+
+  /* Success Toast - Green */
+  --sonner-success-bg: hsl(142 50% 15%);
+  --sonner-success-text: hsl(142 60% 50%);
+  --sonner-success-border: hsl(142 60% 50%);
+
+  /* Error Toast - Red */
+  --sonner-error-bg: #221F20;
+  --sonner-error-text: hsl(0 70% 55%);
+  --sonner-error-border: hsl(0 70% 55%);
+}
+
+/* ========== SONNER TOAST STYLING ========== */
+[data-sonner-toast] {
+  background-color: var(--sonner-bg) !important;
+  color: var(--sonner-text) !important;
+  border: 1px solid var(--sonner-border) !important;
+  box-shadow: var(--sonner-shadow) !important;
+}
+
+[data-sonner-toast][data-type="success"] {
+  background-color: var(--sonner-success-bg) !important;
+  color: var(--sonner-success-text) !important;
+  border-color: var(--sonner-success-border) !important;
+}
+
+[data-sonner-toast][data-type="error"] {
+  background-color: var(--sonner-error-bg) !important;
+  color: var(--sonner-error-text) !important;
+  border-color: var(--sonner-error-border) !important;
 }
 
 /* Ocultar la barra de scroll */
@@ -193,4 +245,17 @@ body::-webkit-scrollbar {
 * {
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+/* ========== FIX CHROME AUTOFILL ========== */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-primary) inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+  caret-color: var(--text-primary);
+  transition: background-color 9999s ease-in-out 0s;
 }
