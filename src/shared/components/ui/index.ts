@@ -10,3 +10,4 @@ export * from './TiltedCard';
 export * from './Modal';
 export * from './LightPillar';
 export * from './ScrollFloat';
+export * from './Spinner';

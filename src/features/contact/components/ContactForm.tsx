@@ -65,18 +65,6 @@ export const ContactForm = () => {
             )}
           </div>
 
-          {formState.message && (
-            <div className={`text-center p-4 ${
-              formState.success
-                ? 'bg-accent/10 border border-accent'
-                : 'bg-red-500/10 border border-red-500'
-            }`}>
-              <p className={`text-sm md:text-lg ${formState.success ? 'text-accent' : 'text-text-secondary'}`}>
-                {formState.message}
-              </p>
-            </div>
-          )}
-
           <SubmitButton />
         </form>
       </div>

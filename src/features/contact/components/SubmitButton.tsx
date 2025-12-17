@@ -1,4 +1,5 @@
 import { useFormStatus } from "react-dom";
+import { Spinner } from "@/shared";
 
 export const SubmitButton = () => {
   const { pending } = useFormStatus();
@@ -9,7 +10,7 @@ export const SubmitButton = () => {
       disabled={pending}
       className="w-full py-4 text-xl font-medium text-bg-primary bg-text-primary hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      {pending ? "Sending..." : "Send"}
+      {pending ? <Spinner /> : "Send"}
     </button>
   );
 };
