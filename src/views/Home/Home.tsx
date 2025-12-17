@@ -1,5 +1,5 @@
 import { useThemeStore } from '@/store/themeStore'
-import { ThemeToggle } from '@/components/ui'
+import { ThemeToggle, LightPillar } from '@/components/ui'
 
 export const Home = () => {
   const theme = useThemeStore((state) => state.theme)
@@ -7,6 +7,21 @@ export const Home = () => {
 
   return (
     <section id="home" className="flex flex-col min-h-screen bg-transparent transition-colors">
+      {theme === 'dark' &&
+        <LightPillar
+          topColor="#221F20"
+          bottomColor="#B62A16"
+          intensity={1.0}
+          rotationSpeed={1}
+          glowAmount={0.002}
+          pillarWidth={3.0}
+          pillarHeight={0.4}
+          noiseIntensity={0.5}
+          pillarRotation={60}
+          interactive={false}
+          mixBlendMode="screen"
+        />
+      }
       {/* Logo and Theme Toggle */}
       <div className='flex justify-between'>
         <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +86,7 @@ export const Home = () => {
                 <a
                   href="/Jose_Centeno_CV_ES.pdf"
                   download="Jose_Centeno_CV_ES.pdf"
-                  className="text-[10px] px-1.5 py-0.5 rounded border border-text-secondary text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
+                  className="text-bg-primary text-[10px] px-1.5 py-0.5 rounded border border-text-secondary bg-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
                   title="Descargar CV en Español"
                 >
                   ES
@@ -79,7 +94,7 @@ export const Home = () => {
                 <a
                   href="/Jose_Centeno_CV_EN.pdf"
                   download="Jose_Centeno_CV_EN.pdf"
-                  className="text-[10px] px-1.5 py-0.5 rounded border border-text-secondary text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
+                  className="text-bg-primary text-[10px] px-1.5 py-0.5 rounded border border-text-secondary bg-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
                   title="Descargar CV en Inglés"
                 >
                   EN
