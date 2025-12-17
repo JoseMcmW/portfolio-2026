@@ -1,4 +1,5 @@
 import { TiltedCard } from '@/shared/components/ui';
+import { getCloudinaryImage } from '@/shared';
 import type { Project } from '../types';
 
 interface ProjectCardProps {
@@ -7,9 +8,11 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
+  const url = getCloudinaryImage(project.imageSrc, 600);
+  console.log('url', url)
   return (
     <TiltedCard
-      imageSrc={project.imageSrc}
+      imageSrc={getCloudinaryImage(project.imageSrc, 600)}
       altText={project.altText}
       captionText={project.captionText}
       containerHeight="300px"

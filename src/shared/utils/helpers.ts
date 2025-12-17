@@ -1,3 +1,4 @@
+const CLOUD = import.meta.env.VITE_CLOUDINARY_CLOUD;
 // Pure helper functions without state or side effects
 
 /**
@@ -242,3 +243,12 @@ export const removeFromStorage = (key: string): boolean => {
     return false;
   }
 };
+console.log('CLOUD', CLOUD)
+/**
+ * Image link cloudinary
+ */
+export const getCloudinaryImage = (
+  id: string,
+  width = 600
+) =>
+  `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,w_${width}/${id}`;
