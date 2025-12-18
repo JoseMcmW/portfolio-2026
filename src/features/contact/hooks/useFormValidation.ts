@@ -18,7 +18,7 @@ export const useFormValidation = () => {
           fieldErrors[issue.path[0] as keyof ContactFormData] = issue.message;
         }
       });
-      
+
       return {
         isValid: false,
         errors: fieldErrors,

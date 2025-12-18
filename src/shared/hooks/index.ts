@@ -1,4 +1,3 @@
-// Barrel export for shared infrastructure hooks
 export { useGSAP } from './useGSAP'
 export type { GSAPConfig } from './useGSAP'
 

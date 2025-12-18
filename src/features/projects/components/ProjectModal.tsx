@@ -1,3 +1,4 @@
+import { getCloudinaryImage } from '@/shared';
 import { Modal } from '@/shared/components/ui';
 import type { Project } from '../types';
 
@@ -14,7 +15,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
         <div className="flex flex-col">
           <div className="relative w-full h-64 sm:h-80">
             <img
-              src={project.imageSrc}
+              src={getCloudinaryImage(project.imageSrc)}
               alt={project.altText}
               className="w-full h-full object-cover"
             />

@@ -8,12 +8,12 @@ export interface UseLocalStorageOptions<T> {
    * Custom serializer function (default: JSON.stringify)
    */
   serializer?: (value: T) => string
-  
+
   /**
    * Custom deserializer function (default: JSON.parse)
    */
   deserializer?: (value: string) => T
-  
+
   /**
    * Sync state across tabs/windows
    */
@@ -23,7 +23,7 @@ export interface UseLocalStorageOptions<T> {
 /**
  * Generic hook for localStorage management (infrastructure level)
  * Does not know about specific features or UI components
- * 
+ *
  * @param key - The localStorage key
  * @param defaultValue - Default value if key doesn't exist
  * @param options - Optional configuration
@@ -63,12 +63,12 @@ export const useLocalStorage = <T>(
       try {
         // Allow value to be a function for same API as useState
         const valueToStore = value instanceof Function ? value(storedValue) : value
-        
+
         setStoredValue(valueToStore)
 
         if (typeof window !== 'undefined') {
           window.localStorage.setItem(key, serializer(valueToStore))
-          
+
           // Dispatch custom event for cross-tab synchronization
           if (syncData) {
             window.dispatchEvent(
@@ -91,10 +91,10 @@ export const useLocalStorage = <T>(
   const removeValue = useCallback(() => {
     try {
       setStoredValue(defaultValue)
-      
+
       if (typeof window !== 'undefined') {
         window.localStorage.removeItem(key)
-        
+
         // Dispatch custom event for cross-tab synchronization
         if (syncData) {
           window.dispatchEvent(
@@ -126,7 +126,7 @@ export const useLocalStorage = <T>(
           }
         }
       }
-      
+
       // Handle custom event (from same tab)
       if (e instanceof CustomEvent) {
         const { key: eventKey, value } = e.detail

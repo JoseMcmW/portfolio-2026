@@ -58,7 +58,7 @@ class ApiError extends Error {
   status: number;
   code?: string;
   details?: unknown;
-  
+
   isClientError(): boolean;
   isServerError(): boolean;
   isNetworkError(): boolean;

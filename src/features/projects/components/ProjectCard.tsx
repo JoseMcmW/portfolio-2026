@@ -8,8 +8,6 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
-  const url = getCloudinaryImage(project.imageSrc, 600);
-  console.log('url', url)
   return (
     <TiltedCard
       imageSrc={getCloudinaryImage(project.imageSrc, 600)}

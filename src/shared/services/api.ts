@@ -12,11 +12,11 @@ export class ApiService {
 
   // Generic request method with centralized error handling
   async request<T>(
-    endpoint: string, 
+    endpoint: string,
     options: RequestInit = {}
   ): Promise<T> {
     const url = `${this.baseURL}${endpoint}`;
-    
+
     // Create AbortController for timeout
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), this.timeout);
@@ -67,26 +67,26 @@ export class ApiService {
     if (error instanceof ApiError) {
       throw error;
     }
-    
+
     if (error instanceof Error) {
       if (error.name === 'AbortError') {
         throw new ApiError('Request timeout', 408, 'TIMEOUT');
       }
-      
+
       if (error.name === 'TypeError' && error.message.includes('fetch')) {
         throw new ApiError('Network error. Please check your connection.', 0, 'NETWORK_ERROR');
       }
-      
+
       throw new ApiError(error.message, 500, 'INTERNAL_ERROR');
     }
-    
+
     throw new ApiError('Unknown error occurred', 500, 'UNKNOWN_ERROR');
   }
 
   // GET request
   async get<T>(endpoint: string, params?: Record<string, string>): Promise<T> {
     const url = new URL(endpoint, this.baseURL);
-    
+
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
         url.searchParams.append(key, value);
@@ -137,7 +137,7 @@ export class ApiError extends Error {
     this.status = status;
     this.code = code;
     this.details = details;
-    
+
     // Maintains proper stack trace for where error was thrown (V8 only)
     const ErrorConstructor = Error as unknown as { captureStackTrace?: (target: object, constructor: Function) => void };
     if (typeof ErrorConstructor.captureStackTrace === 'function') {
@@ -167,15 +167,15 @@ export class ApiError extends Error {
     if (this.isNetworkError()) {
       return 'Network error. Please check your connection and try again.';
     }
-    
+
     if (this.isTimeout()) {
       return 'Request timed out. Please try again.';
     }
-    
+
     if (this.isServerError()) {
       return 'Server error. Please try again later.';
     }
-    
+
     return this.message;
   }
 }

@@ -88,7 +88,7 @@ export class ApiError extends Error {
   status: number;        // HTTP status code
   code?: string;         // Error code (e.g., 'TIMEOUT', 'NETWORK_ERROR')
   details?: unknown;     // Additional error details
-  
+
   // Helper methods
   isClientError(): boolean;  // 4xx errors
   isServerError(): boolean;  // 5xx errors
@@ -127,10 +127,10 @@ describe('ApiService', () => {
       ok: true,
       json: async () => ({ data: 'test' })
     });
-    
+
     const service = new ApiService();
     const result = await service.get('/test');
-    
+
     expect(result).toEqual({ data: 'test' });
   });
 });

@@ -11,7 +11,7 @@ export type { GSAPConfig } from '../types/common'
 /**
  * Generic hook for GSAP animations (infrastructure level)
  * Does not know about specific features or UI components
- * 
+ *
  * @returns GSAP utility functions for creating animations
  */
 export const useGSAP = () => {
@@ -35,7 +35,7 @@ export const useGSAP = () => {
     vars: gsap.TweenVars
   ): gsap.core.Tween | null => {
     if (!contextRef.current) return null
-    
+
     return contextRef.current.add(() => gsap.to(target, vars))
   }
 
@@ -47,7 +47,7 @@ export const useGSAP = () => {
     vars: gsap.TweenVars
   ): gsap.core.Tween | null => {
     if (!contextRef.current) return null
-    
+
     return contextRef.current.add(() => gsap.from(target, vars))
   }
 
@@ -60,7 +60,7 @@ export const useGSAP = () => {
     toVars: gsap.TweenVars
   ): gsap.core.Tween | null => {
     if (!contextRef.current) return null
-    
+
     return contextRef.current.add(() => gsap.fromTo(target, fromVars, toVars))
   }
 
@@ -72,7 +72,7 @@ export const useGSAP = () => {
     vars: gsap.TweenVars
   ): gsap.core.Tween | null => {
     if (!contextRef.current) return null
-    
+
     return contextRef.current.add(() => gsap.set(target, vars))
   }
 
@@ -81,7 +81,7 @@ export const useGSAP = () => {
    */
   const timeline = (vars?: gsap.TimelineVars): gsap.core.Timeline | null => {
     if (!contextRef.current) return null
-    
+
     return contextRef.current.add(() => gsap.timeline(vars))
   }
 

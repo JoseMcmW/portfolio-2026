@@ -1,13 +1,8 @@
 export * from './SplashScreen';
 export * from './CustomCursor';
-export { default as GlassIcons } from './GlassIcons';
-export { default as NavigationMenu } from './NavigationMenu';
-export type { GlassIconsItem, GlassIconsProps } from './GlassIcons';
-export type { NavigationMenuProps } from './NavigationMenu';
 export * from './ScrollVelocity';
 export * from './LogoLoop';
 export * from './TiltedCard';
 export * from './Modal';
 export * from './LightPillar';
-export * from './ScrollFloat';
 export * from './Spinner';

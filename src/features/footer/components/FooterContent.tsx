@@ -22,11 +22,11 @@ export const FooterContent: React.FC = () => {
         </p>
         <SocialLinks />
       </div>
-      
+
       {/* Footer con letras JMCM de fondo */}
       <div className='absolute my-0! flex justify-center items-center overflow-hidden z-0 pointer-events-none'>
-        <h2 
-          ref={textRef} 
+        <h2
+          ref={textRef}
           className='text-[35vw]! font-black leading-none! text-text-primary/10 opacity-50 will-change-transform'
         >
           {footerInfo.backgroundText}

@@ -29,7 +29,7 @@ export interface ExtendedScrollTriggerConfig {
 /**
  * Generic hook for ScrollTrigger functionality (infrastructure level)
  * Does not know about specific features or UI components
- * 
+ *
  * @param elementRef - Optional ref to the element to observe
  * @returns ScrollTrigger utility functions
  */

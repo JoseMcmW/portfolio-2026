@@ -8,7 +8,6 @@ export const CustomCursor = () => {
     const cursor = cursorRef.current
     if (!cursor) return
 
-    // Usar quickTo para animaciones más suaves y eficientes
     const xTo = gsap.quickTo(cursor, 'x', {
       duration: 0.6,
       ease: 'power2.out' // Efecto elástico para el rebote
@@ -20,8 +19,6 @@ export const CustomCursor = () => {
     })
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Mover el cursor a la posición del mouse
-      // Restamos la mitad del tamaño del cursor para centrarlo
       xTo(e.clientX)
       yTo(e.clientY)
     }
@@ -41,8 +38,8 @@ export const CustomCursor = () => {
       style={{
         width: '40px',
         height: '40px',
-        left: '-20px', // Centrar el cursor
-        top: '-20px',
+        left: '0px',
+        top: '0px',
       }}
     >
       <div

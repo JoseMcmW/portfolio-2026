@@ -243,7 +243,7 @@ export const removeFromStorage = (key: string): boolean => {
     return false;
   }
 };
-console.log('CLOUD', CLOUD)
+
 /**
  * Image link cloudinary
  */
