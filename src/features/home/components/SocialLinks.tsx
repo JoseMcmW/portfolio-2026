@@ -2,7 +2,7 @@ import { socialLinks, cvLinks } from '@/shared';
 
 export const SocialLinks: React.FC = () => {
   return (
-    <div className="flex flex-col items-center shrink-0 w-[70px] social-links">
+    <nav aria-label="Social links" className="flex flex-col items-center shrink-0 w-[70px] social-links">
       {/* Top Point */}
       <div className="w-1 h-1 rounded-full bg-text-primary/70"></div>
 
@@ -29,12 +29,13 @@ export const SocialLinks: React.FC = () => {
 
         {/* Curriculum */}
         <div className="flex flex-col items-center gap-2">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-text-secondary">
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-text-secondary">
             <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M12,19L8,15H10.5V12H13.5V15H16L12,19Z"/>
           </svg>
           <div className="flex gap-1">
             {cvLinks.map((cv) => (
               <a
+                aria-label={cv.title}
                 key={cv.language}
                 href={cv.url}
                 download={cv.filename}
@@ -53,6 +54,6 @@ export const SocialLinks: React.FC = () => {
 
       {/* Bottom Point */}
       <div className="w-1 h-1 rounded-full bg-text-primary/70"></div>
-    </div>
+    </nav>
   )
 }

@@ -41,8 +41,12 @@ function App() {
       options={{ duration: 1.2, smoothWheel: true, syncTouch: true }}
     >
       <ScrollSync />
-      <Toaster position="top-center" richColors />
       <div className="min-h-screen bg-bg-primary p-1 md:p-3">
+        {/* Skip to content link */}
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded">
+          Skip to main content
+        </a>
+        <Toaster position="top-center" richColors />
         {/* Custom Cursor */}
         <CustomCursor />
 
@@ -50,9 +54,12 @@ function App() {
         {showSplash && <SplashScreen onComplete={handleSplashComplete} duration={3000} />}
 
         {/* Contenido principal */}
-        <Home />
-        <Projects />
-        <Contact />
+        <main id="main-content" tabIndex={-1}>
+          <Home />
+          <Projects />
+          <Contact />
+        </main>
+
         <Footer />
       </div>
     </ReactLenis>

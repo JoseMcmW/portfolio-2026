@@ -8,25 +8,27 @@ export const Home = () => {
   return (
     <section id="home" className="flex flex-col min-h-screen bg-transparent transition-colors">
       {theme === 'dark' &&
-        <LightPillar
-          topColor="#221F20"
-          bottomColor="#B62A16"
-          intensity={1.0}
-          rotationSpeed={1}
-          glowAmount={0.002}
-          pillarWidth={3.0}
-          pillarHeight={0.4}
-          noiseIntensity={0.5}
-          pillarRotation={60}
-          interactive={false}
-          mixBlendMode="screen"
-        />
+        <div aria-hidden="true">
+          <LightPillar
+            topColor="#221F20"
+            bottomColor="#B62A16"
+            intensity={1.0}
+            rotationSpeed={1}
+            glowAmount={0.002}
+            pillarWidth={3.0}
+            pillarHeight={0.4}
+            noiseIntensity={0.5}
+            pillarRotation={60}
+            interactive={false}
+            mixBlendMode="screen"
+          />
+        </div>
       }
       {/* Logo and Theme Toggle */}
-      <div className='flex justify-between'>
+      <header className='flex justify-between'>
         <Logo className="hero-logo" />
         <ThemeToggle className="theme-toggle" />
-      </div>
+      </header>
       <div className='flex-1 flex flex-row items-center'>
         <SocialLinks />
         <HeroContent />

@@ -55,6 +55,7 @@ export const TiltedCard = ({
   });
 
   const [lastY, setLastY] = useState(0);
+  const isInteractive = typeof onClick === 'function';
 
   function handleMouse(e: React.MouseEvent<HTMLElement>) {
     if (!ref.current) return;
@@ -90,6 +91,7 @@ export const TiltedCard = ({
     rotateFigcaption.set(0);
   }
 
+
   return (
     <figure
       ref={ref}
@@ -101,6 +103,16 @@ export const TiltedCard = ({
       onMouseMove={handleMouse}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      role={isInteractive ? 'button' : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
+      aria-label={isInteractive ? captionText || altText : undefined}
+      onKeyDown={(e) => {
+        if (!isInteractive) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      }}
       onClick={onClick}
     >
       {showMobileWarning && (
@@ -138,6 +150,7 @@ export const TiltedCard = ({
 
       {showTooltip && (
         <motion.figcaption
+          aria-hidden="true"
           className="pointer-events-none absolute left-0 top-0 rounded-[4px] bg-white px-[10px] py-[4px] text-[10px] text-[#2d2d2d] opacity-0 z-[3] hidden sm:block"
           style={{
             x,

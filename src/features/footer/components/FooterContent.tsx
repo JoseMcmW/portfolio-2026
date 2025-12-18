@@ -5,7 +5,7 @@ import { useFooterAnimations } from '../hooks/useFooterAnimations';
 
 export const FooterContent: React.FC = () => {
   const footerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
   // Use the footer animations hook
   useFooterAnimations({ footerRef, textRef });
@@ -25,12 +25,13 @@ export const FooterContent: React.FC = () => {
 
       {/* Footer con letras JMCM de fondo */}
       <div className='absolute my-0! flex justify-center items-center overflow-hidden z-0 pointer-events-none'>
-        <h2
+        <div
           ref={textRef}
+          aria-hidden="true"
           className='text-[35vw]! font-black leading-none! text-text-primary/10 opacity-50 will-change-transform'
         >
           {footerInfo.backgroundText}
-        </h2>
+        </div>
       </div>
     </div>
   );

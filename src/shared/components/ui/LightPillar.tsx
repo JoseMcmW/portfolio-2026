@@ -138,7 +138,7 @@ export const LightPillar: React.FC<LightPillarProps> = ({
         float frequency = 1.0;
         float amplitude = 1.0;
         vec3 deformed = pos;
-        
+
         for(float i = 0.0; i < 4.0; i++) {
           deformed.xz *= rot(0.4);
           float phase = timeOffset * i * 2.0;
@@ -164,7 +164,7 @@ export const LightPillar: React.FC<LightPillarProps> = ({
       void main() {
         vec2 fragCoord = vUv * uResolution;
         vec2 uv = (fragCoord * 2.0 - uResolution) / uResolution.y;
-        
+
         // Apply 2D rotation to UV coordinates
         float rotAngle = uPillarRotation * PI / 180.0;
         uv *= rot(rotAngle);
@@ -181,7 +181,7 @@ export const LightPillar: React.FC<LightPillarProps> = ({
         }
 
         vec3 color = vec3(0.0);
-        
+
         for(float i = 0.0; i < 100.0; i++) {
           vec3 pos = origin + direction * depth;
           pos.xz *= rotX;
@@ -190,11 +190,11 @@ export const LightPillar: React.FC<LightPillarProps> = ({
           vec3 deformed = pos;
           deformed.y *= uPillarHeight;
           deformed = applyWaveDeformation(deformed + vec3(0.0, uTime, 0.0), uTime);
-          
+
           // Calculate distance field using cosine pattern
           vec2 cosinePair = cos(deformed.xz);
           float fieldDistance = length(cosinePair) - 0.2;
-          
+
           // Radial boundary constraint
           float radialBound = length(pos.xz) - uPillarWidth;
           fieldDistance = blendMax(radialBound, fieldDistance, 1.0);
@@ -210,11 +210,11 @@ export const LightPillar: React.FC<LightPillarProps> = ({
         // Normalize by pillar width to maintain consistent glow regardless of size
         float widthNormalization = uPillarWidth / 3.0;
         color = tanh(color * uGlowAmount / widthNormalization);
-        
+
         // Add noise postprocessing
         float rnd = noise(gl_FragCoord.xy);
         color -= rnd / 15.0 * uNoiseIntensity;
-        
+
         gl_FragColor = vec4(color * uIntensity, 1.0);
       }
     `;
