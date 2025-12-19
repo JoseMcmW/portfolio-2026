@@ -9,7 +9,7 @@ export const SocialLinks: React.FC = () => {
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
+          className="text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform hover:[filter:drop-shadow(0_0_6px_var(--shadow-hover))]"
           aria-label={link.ariaLabel}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

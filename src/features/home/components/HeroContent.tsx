@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useHeroAnimations } from '../hooks/useHeroAnimations'
 
 export const HeroContent: React.FC = () => {
-  const { animateFullHeroSequence } = useHeroAnimations()
+  /* const { animateFullHeroSequence } = useHeroAnimations()
 
   useEffect(() => {
     // Trigger hero animations on mount
@@ -11,7 +11,7 @@ export const HeroContent: React.FC = () => {
     }, 100) // Small delay to ensure DOM is ready
 
     return () => clearTimeout(timer)
-  }, [animateFullHeroSequence])
+  }, [animateFullHeroSequence]) */
 
   return (
     <div className="text-center flex-1 hero-content">

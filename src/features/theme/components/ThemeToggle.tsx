@@ -78,7 +78,6 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '' }) => {
             style={{
               backgroundColor: theme === 'dark' ? '#F4320B' : '#221F20',
               opacity: 0.3,
-              mixBlendMode: 'multiply',
             }}
           />
           {/* Overlay de color para la mitad inferior */}
@@ -87,7 +86,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '' }) => {
             style={{
               backgroundColor: theme === 'dark' ? '#F2EDEB' : '#F4320B',
               opacity: 0.3,
-              mixBlendMode: 'multiply'
+
             }}
           />
         </div>

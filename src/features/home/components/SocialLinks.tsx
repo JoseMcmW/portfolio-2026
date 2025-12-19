@@ -2,7 +2,7 @@ import { socialLinks, cvLinks } from '@/shared';
 
 export const SocialLinks: React.FC = () => {
   return (
-    <nav aria-label="Social links" className="flex flex-col items-center shrink-0 w-[70px] social-links">
+    <nav aria-label="Social links" className="flex flex-col items-center shrink-0 w-[70px] social-links z-10">
       {/* Top Point */}
       <div className="w-1 h-1 rounded-full bg-text-primary/70"></div>
 
@@ -18,7 +18,7 @@ export const SocialLinks: React.FC = () => {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
+            className="text-text-secondary hover:text-text-primary transform transition-transform duration-300 hover:scale-110 hover:[filter:drop-shadow(0_0_6px_var(--shadow-hover))]"
             aria-label={link.ariaLabel}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@ export const SocialLinks: React.FC = () => {
                 key={cv.language}
                 href={cv.url}
                 download={cv.filename}
-                className="text-bg-primary text-[10px] px-1.5 py-0.5 rounded border border-text-secondary bg-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform"
+                className="text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-110 transform hover:[filter:drop-shadow(0_0_6px_var(--shadow-hover))]"
                 title={cv.title}
               >
                 {cv.language}

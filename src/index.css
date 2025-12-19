@@ -56,6 +56,7 @@
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-accent: var(--accent);
+  --color-shadow-hover: var(--shadow-hover);
 }
 
 /* Valores para Modo CLARO (por defecto) */
@@ -66,6 +67,7 @@
   --shadow-color: #000000;
   --border-color: #000000;
   --accent: #00C8FF;
+  --shadow-hover: #F4320B;
 
   /* Sonner - Light Mode */
   --sonner-bg: hsl(30 20% 94%);
@@ -91,6 +93,7 @@
   --text-secondary: rgba(244, 50, 11, 0.7); /* #F4320B con 70% opacidad */
   --accent: #00C8FF;
   --shadow-color: #F4320B;
+  --shadow-hover: #F4320B;
 
   /* Sonner - Dark Mode */
   --sonner-bg: hsl(0 4% 13%);
