@@ -8,7 +8,16 @@ export const SubmitButton = () => {
     <button
       type="submit"
       disabled={pending}
-      className="w-full py-4 text-xl font-medium text-bg-primary bg-text-primary hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+      className="
+        w-full py-4 text-xl font-medium
+        bg-text-primary text-bg-primary
+        transition-colors
+        hover:bg-text-primary/90
+        focus-visible:outline
+        focus-visible:outline-offset-2
+        disabled:bg-text-primary/60
+        disabled:cursor-not-allowed
+      "
     >
       {pending ? <Spinner /> : "Send"}
     </button>

@@ -60,8 +60,14 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '' }) => {
             ref={imageRef}
             src={forestImage}
             alt="Upside Down Forest"
+            fetchPriority="high"
+            decoding="async"
+            loading="eager"
+            width={1200}
+            height={1200}
             className="w-full h-full transition-all duration-300"
             style={{
+              aspectRatio: '1 / 1',
               filter: shadow,
               transformStyle: 'preserve-3d'
             }}
